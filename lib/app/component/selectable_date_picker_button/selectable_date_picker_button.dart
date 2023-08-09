@@ -55,7 +55,7 @@ class SelectableDatePickerButton extends StatelessWidget {
               '${parsedDate.day}',
               style: TextStyle(
                 color: (disabled != null && disabled == true) || (isSelected != null && isSelected != true)
-                    ? Colors.black38
+                    ? Colors.grey.shade600
                     : null,
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -71,7 +71,7 @@ class SelectableDatePickerButton extends StatelessWidget {
       },
       radius: radius ?? (isSelected == false ? 30 : 100),
       color: disabled == true
-          ? const Color.fromRGBO(154, 153, 157, 100)
+          ? Colors.grey.shade400
           : (isSelected == false ? Colors.black12 : Theme.of(context).primaryColor),
       loading: false,
       outline: !(isSelected ?? true),

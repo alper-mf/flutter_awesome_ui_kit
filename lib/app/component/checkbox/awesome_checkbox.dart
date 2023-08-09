@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class AwesomeRadioButton extends StatefulWidget {
+class AwesomeCheckBox extends StatefulWidget {
   final bool value;
   final ValueChanged<bool> onChanged;
   final String? label;
   final TextStyle? textStyle;
 
-  const AwesomeRadioButton({
+  const AwesomeCheckBox({
     Key? key,
     required this.value,
     required this.onChanged,
@@ -16,17 +16,19 @@ class AwesomeRadioButton extends StatefulWidget {
 
   @override
   // ignore: library_private_types_in_public_api
-  _AwesomeRadioButtonState createState() => _AwesomeRadioButtonState();
+  _AwesomeCheckBoxState createState() => _AwesomeCheckBoxState();
 }
 
-class _AwesomeRadioButtonState extends State<AwesomeRadioButton> {
+class _AwesomeCheckBoxState extends State<AwesomeCheckBox> {
   @override
   Widget build(BuildContext context) {
-    final primaryColor = Theme.of(context).primaryColor;
-    const double circleSize = 22.0;
-    const double circleBorderWidth = 2.0;
-    const double innerCircleSize = 10.0;
-    const spacing = 8.0;
+    final ThemeData theme = Theme.of(context);
+    final Color borderColor = theme.primaryColor;
+    const double boxSize = 24.0;
+    const double iconSize = 18.0;
+    const double spacing = 8.0;
+    const double borderWidth = 1.5;
+    const double borderRadius = 4.0;
 
     return GestureDetector(
       onTap: () {
@@ -35,29 +37,21 @@ class _AwesomeRadioButtonState extends State<AwesomeRadioButton> {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SizedBox(
-            width: circleSize,
-            height: circleSize,
+          SizedBox.square(
+            dimension: boxSize,
             child: DecoratedBox(
               decoration: BoxDecoration(
-                shape: BoxShape.circle,
                 border: Border.all(
-                  color: primaryColor,
-                  width: circleBorderWidth,
+                  color: borderColor,
+                  width: borderWidth,
                 ),
+                borderRadius: BorderRadius.circular(borderRadius),
               ),
               child: widget.value
-                  ? Center(
-                      child: SizedBox(
-                        width: innerCircleSize,
-                        height: innerCircleSize,
-                        child: DecoratedBox(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: primaryColor,
-                          ),
-                        ),
-                      ),
+                  ? Icon(
+                      Icons.check,
+                      color: Theme.of(context).primaryColor,
+                      size: iconSize,
                     )
                   : null,
             ),

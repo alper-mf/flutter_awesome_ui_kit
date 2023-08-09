@@ -1,4 +1,5 @@
 import 'package:drh_app_components/app/component/button/button_space.dart';
+import 'package:drh_app_components/app/component/checkbox/awesome_checkbox.dart';
 import 'package:drh_app_components/app/component/radio_button/awesome_radio_button.dart';
 import 'package:drh_app_components/app/component/selectable_chip_button/selectable_chip_button.dart';
 import 'package:drh_app_components/app/component/selectable_date_picker_button/selectable_date_picker_button.dart';
@@ -20,6 +21,7 @@ class _MainAppState extends State<MainApp> {
   bool isSelected = false;
   bool switchValue = false;
   bool radioValue = false;
+  bool checkBoxValue = false;
 
   @override
   Widget build(BuildContext context) {
@@ -148,12 +150,23 @@ class _MainAppState extends State<MainApp> {
             ),
             const SizedBox(height: 20),
             AwesomeRadioButton(
-                value: radioValue,
+              label: 'Test',
+              value: radioValue,
+              onChanged: (val) {
+                setState(() {
+                  radioValue = val;
+                });
+              },
+            ),
+            const SizedBox(height: 20),
+            AwesomeCheckBox(
+                value: checkBoxValue,
                 onChanged: (val) {
                   setState(() {
-                    radioValue = val;
+                    checkBoxValue = val;
                   });
-                }),
+                },
+                label: 'Test')
           ],
         ),
       )),

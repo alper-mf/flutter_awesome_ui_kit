@@ -47,7 +47,7 @@ class _OutlinedButton extends _ButtonWidget {
             color: _disabled
                 ? Colors.grey.shade500
                 : _loading
-                    ? const Color(0xFF4BB2F2)
+                    ? Theme.of(context).primaryColor.withOpacity(0.2)
                     : _color,
             width: _borderWidth),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(_radius)),

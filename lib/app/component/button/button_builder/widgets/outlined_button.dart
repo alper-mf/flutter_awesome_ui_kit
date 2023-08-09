@@ -6,11 +6,13 @@ class _OutlinedButton extends _ButtonWidget {
     required Widget text,
     required Widget icon,
     required Color color,
+    required Color shadowColor,
     required bool outline,
     required bool disabled,
     required bool loading,
     required double radius,
     required double borderWidth,
+    required double elevation,
     required Function()? onPressed,
     required Widget? loadingWidget,
   }) : super(
@@ -18,11 +20,13 @@ class _OutlinedButton extends _ButtonWidget {
           text: text,
           icon: icon,
           color: color,
+          shadowColor: shadowColor,
           outline: outline,
           disabled: disabled,
           loading: loading,
           radius: radius,
           borderWidth: borderWidth,
+          elevation: elevation,
           onPressed: onPressed,
           loadingWidget: loadingWidget,
         );
@@ -32,6 +36,8 @@ class _OutlinedButton extends _ButtonWidget {
       key: key,
       onPressed: !_disabled ? _onPressed : null,
       style: OutlinedButton.styleFrom(
+        elevation: _elevation,
+        shadowColor: _shadowColor,
         backgroundColor: _disabled
             ? const Color(0xFF9A999D)
             : _loading

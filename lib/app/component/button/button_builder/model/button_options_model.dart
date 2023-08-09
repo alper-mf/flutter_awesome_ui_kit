@@ -9,8 +9,10 @@ class ButtonOptions {
   final bool? outline;
   final bool? disabled;
   final Color? color;
+  final Color? shadowColor;
   final double? radius;
   final double? borderWidth;
+  final double? elevation;
   final Function()? onPressed;
 
   ButtonOptions({
@@ -25,5 +27,7 @@ class ButtonOptions {
     this.loadingWidget,
     this.outline,
     this.onPressed,
+    this.shadowColor,
+    this.elevation,
   });
 }

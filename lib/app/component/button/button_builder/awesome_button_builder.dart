@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'model/button_options_model.dart';
 
@@ -11,18 +13,22 @@ class AwesomeButtonBuilder {
   Widget? _text; // The button text widget
   Widget? _icon; // The button icon widget
   Color? _color; // The button color
+  Color? _shadowColor;
 
   bool? _outline = false; // Whether the button should be outlined or not
   bool? _disabled = false; // Whether the button is disabled or not
   bool? _loading = false; // Whether the button is in a loading state or not
   double? _radius = 10; // The button border radius
   double? _borderWidth = 2; // The button border width
+  double? _elevation = 0; // The button elevation
 
   Function()? _onPressed; // The callback function when the button is pressed
   Widget? _loadingWidget; // The loading widget to display while the button is loading
 
   /// Sets options for the button
   AwesomeButtonBuilder fromOptions(ButtonOptions options) {
+    _elevation = options.elevation ?? 0;
+    _shadowColor = options.shadowColor ?? Colors.black45;
     _key = options.key ?? UniqueKey();
     _text = options.text ?? const SizedBox.shrink();
     _icon = options.icon ?? const SizedBox.shrink();
@@ -46,6 +52,8 @@ class AwesomeButtonBuilder {
   /// Builds an elevated button
   Widget buildElevatedButton() {
     return _ElevatedButton(
+      elevation: _elevation!,
+      shadowColor: _shadowColor ?? Colors.black45,
       loadingWidget: _loadingWidget!,
       key: _key!,
       onPressed: _onPressed!,
@@ -63,6 +71,8 @@ class AwesomeButtonBuilder {
   /// Builds an outlined button
   Widget buildOutlinedButton() {
     return _OutlinedButton(
+      shadowColor: _shadowColor ?? Colors.black45,
+      elevation: _elevation ?? 0,
       borderWidth: _borderWidth!,
       loadingWidget: _loadingWidget!,
       key: _key!,

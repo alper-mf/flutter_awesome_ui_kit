@@ -6,11 +6,13 @@ class _ElevatedButton extends _ButtonWidget {
     required Widget text,
     required Widget icon,
     required Color color,
+    required Color shadowColor,
     required bool outline,
     required bool disabled,
     required bool loading,
     required double radius,
     required double borderWidth,
+    required double elevation,
     required Function()? onPressed,
     required Widget? loadingWidget,
   }) : super(
@@ -18,11 +20,13 @@ class _ElevatedButton extends _ButtonWidget {
           text: text,
           icon: icon,
           color: color,
+          shadowColor: shadowColor,
           outline: outline,
           disabled: disabled,
           loading: loading,
           radius: radius,
           borderWidth: borderWidth,
+          elevation: elevation,
           onPressed: onPressed,
           loadingWidget: loadingWidget,
         );
@@ -31,7 +35,8 @@ class _ElevatedButton extends _ButtonWidget {
   Widget build(BuildContext context) {
     final buttonStyle = _outline
         ? ElevatedButton.styleFrom(
-            elevation: 0,
+            elevation: _elevation,
+            shadowColor: _shadowColor,
             foregroundColor: _loading
                 ? Colors.grey.shade400
                 : _disabled
@@ -49,7 +54,8 @@ class _ElevatedButton extends _ButtonWidget {
             ),
           )
         : OutlinedButton.styleFrom(
-            elevation: 0,
+            elevation: _elevation,
+            shadowColor: _shadowColor,
             backgroundColor: _loading
                 ? const Color.fromRGBO(154, 153, 157, 100)
                 : _disabled

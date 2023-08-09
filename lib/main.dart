@@ -118,6 +118,7 @@ class _MainAppState extends State<MainApp> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 SelectableDatePickerButton(
+                  isSelected: true,
                   date: '2023-08-08T19:05:08.352+00:00',
                 ),
                 SizedBox(width: 10),

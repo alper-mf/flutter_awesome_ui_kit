@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import '../button/button_builder/awesome_button_builder.dart';
 import '../button/button_builder/model/button_options_model.dart';
@@ -8,7 +10,9 @@ class SelectableDatePickerButton extends StatelessWidget {
   final bool? disabled;
   final Icon? iconWidget;
   final Color? color;
+  final Color? shadowColor;
   final double? radius;
+
   final String date;
   final double? borderWidth;
   final Function(bool)? onPressed;
@@ -23,6 +27,7 @@ class SelectableDatePickerButton extends StatelessWidget {
     this.onPressed,
     this.disabled,
     required this.date,
+    this.shadowColor,
   }) : super(key: key);
 
   @override
@@ -71,6 +76,8 @@ class SelectableDatePickerButton extends StatelessWidget {
       loading: false,
       outline: !(isSelected ?? true),
       disabled: disabled,
+      shadowColor: shadowColor ?? Theme.of(context).primaryColor,
+      elevation: (isSelected != null && isSelected == true) ? 20 : 0,
       borderWidth: borderWidth ?? 3,
     );
 

@@ -1,6 +1,8 @@
 import 'package:drh_app_components/app/component/button/button_space.dart';
+import 'package:drh_app_components/app/component/radio_button/awesome_radio_button.dart';
 import 'package:drh_app_components/app/component/selectable_chip_button/selectable_chip_button.dart';
 import 'package:drh_app_components/app/component/selectable_date_picker_button/selectable_date_picker_button.dart';
+import 'package:drh_app_components/app/component/switch/awesome_switch.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,6 +18,8 @@ class MainApp extends StatefulWidget {
 
 class _MainAppState extends State<MainApp> {
   bool isSelected = false;
+  bool switchValue = false;
+  bool radioValue = false;
 
   @override
   Widget build(BuildContext context) {
@@ -132,7 +136,24 @@ class _MainAppState extends State<MainApp> {
                   disabled: true,
                 ),
               ],
-            )
+            ),
+            const SizedBox(height: 20),
+            AwesomeSwitch(
+              value: switchValue,
+              onChanged: (val) {
+                setState(() {
+                  switchValue = val;
+                });
+              },
+            ),
+            const SizedBox(height: 20),
+            AwesomeRadioButton(
+                value: radioValue,
+                onChanged: (val) {
+                  setState(() {
+                    radioValue = val;
+                  });
+                }),
           ],
         ),
       )),

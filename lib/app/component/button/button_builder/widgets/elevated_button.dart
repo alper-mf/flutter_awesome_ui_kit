@@ -40,7 +40,7 @@ class _ElevatedButton extends _ButtonWidget {
             foregroundColor: _loading
                 ? Colors.grey.shade400
                 : _disabled
-                    ? const Color.fromRGBO(154, 153, 157, 100) // Disabled durumunda yeni arkaplan rengi
+                    ? Colors.grey.shade400 // Disabled durumunda yeni arkaplan rengi
                     : Colors.white,
             backgroundColor: _disabled
                 ? Colors.transparent // Disabled durumunda yeni arkaplan rengi
@@ -57,9 +57,9 @@ class _ElevatedButton extends _ButtonWidget {
             elevation: _elevation,
             shadowColor: _shadowColor,
             backgroundColor: _loading
-                ? const Color.fromRGBO(154, 153, 157, 100)
+                ? Colors.grey.shade400
                 : _disabled
-                    ? const Color(0xFF9A999D) // Disabled durumunda yeni arkaplan rengi
+                    ? Colors.grey.shade400 // Disabled durumunda yeni arkaplan rengi
                     : _color,
             foregroundColor: _disabled ? Colors.white.withOpacity(0.5) : Colors.white,
             shape: RoundedRectangleBorder(

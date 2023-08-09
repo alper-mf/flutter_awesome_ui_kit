@@ -39,13 +39,13 @@ class _OutlinedButton extends _ButtonWidget {
         elevation: _elevation,
         shadowColor: _shadowColor,
         backgroundColor: _disabled
-            ? const Color(0xFF9A999D)
+            ? Colors.grey.shade400
             : _loading
                 ? Theme.of(context).primaryColor.withOpacity(0.2)
                 : Colors.white, // Doğru renkleri burada kontrol edin
         side: BorderSide(
             color: _disabled
-                ? Colors.grey.shade600
+                ? Colors.grey.shade500
                 : _loading
                     ? const Color(0xFF4BB2F2)
                     : _color,

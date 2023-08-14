@@ -46,47 +46,62 @@ class _MainAppState extends State<MainApp> {
                 text: 'Awesome Button',
               ),
               const SizedBox(height: 20),
-              const ButtonSpace(
-                buttonType: ButtonType.outlined,
-                text: 'Elevated Outline Button',
-                loading: false,
+              const Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ButtonSpace(
+                    buttonType: ButtonType.outlined,
+                    text: 'Elevated Outline Button',
+                    loading: false,
+                  ),
+                  SizedBox(width: 10),
+                  ButtonSpace(
+                    buttonType: ButtonType.outlined,
+                    text: 'Elevated Outline Button',
+                    loading: false,
+                    disabled: true,
+                  ),
+                ],
               ),
               const SizedBox(height: 20),
-              const ButtonSpace(
-                buttonType: ButtonType.outlined,
-                text: 'Elevated Outline Button',
-                loading: false,
-                disabled: true,
+              const Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ButtonSpace(
+                    text: 'Elevated Button',
+                    loading: false,
+                    disabled: false,
+                  ),
+                  SizedBox(width: 10),
+                  ButtonSpace(
+                    text: 'Elevated Button (Disabled)',
+                    loading: false,
+                    disabled: true,
+                  ),
+                ],
               ),
               const SizedBox(height: 20),
-              const ButtonSpace(
-                text: 'Elevated Button',
-                loading: false,
-                disabled: false,
-              ),
-              const SizedBox(height: 20),
-              const ButtonSpace(
-                text: 'Elevated Button (Disabled)',
-                loading: false,
-                disabled: true,
-              ),
-              const SizedBox(height: 20),
-              const ButtonSpace(
-                iconWidget: Icon(
-                  Icons.calendar_month,
-                  size: 16,
-                ),
-                loading: false,
-                disabled: false,
-              ),
-              const SizedBox(height: 20),
-              const ButtonSpace(
-                iconWidget: Icon(
-                  Icons.calendar_month,
-                  size: 16,
-                ),
-                loading: false,
-                disabled: true,
+              const Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ButtonSpace(
+                    iconWidget: Icon(
+                      Icons.calendar_month,
+                      size: 16,
+                    ),
+                    loading: false,
+                    disabled: false,
+                  ),
+                  SizedBox(width: 10),
+                  ButtonSpace(
+                    iconWidget: Icon(
+                      Icons.calendar_month,
+                      size: 16,
+                    ),
+                    loading: false,
+                    disabled: true,
+                  ),
+                ],
               ),
               const SizedBox(height: 20),
               Row(
@@ -147,39 +162,44 @@ class _MainAppState extends State<MainApp> {
                 ],
               ),
               const SizedBox(height: 20),
-              AwesomeSwitch(
-                value: switchValue,
-                onChanged: (val) {
-                  setState(() {
-                    switchValue = val;
-                  });
-                },
-              ),
-              const SizedBox(height: 20),
-              AwesomeRadioButton(
-                label: 'Test',
-                value: radioValue,
-                onChanged: (val) {
-                  setState(() {
-                    radioValue = val;
-                  });
-                },
-              ),
-              const SizedBox(height: 20),
-              AwesomeCheckBox(
-                value: checkBoxValue,
-                onChanged: (val) {
-                  setState(() {
-                    checkBoxValue = val;
-                  });
-                },
-                label: 'Test',
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  AwesomeSwitch(
+                    value: switchValue,
+                    onChanged: (val) {
+                      setState(() {
+                        switchValue = val;
+                      });
+                    },
+                  ),
+                  const SizedBox(width: 20),
+                  AwesomeRadioButton(
+                    label: 'Test',
+                    value: radioValue,
+                    onChanged: (val) {
+                      setState(() {
+                        radioValue = val;
+                      });
+                    },
+                  ),
+                  const SizedBox(width: 20),
+                  AwesomeCheckBox(
+                    value: checkBoxValue,
+                    onChanged: (val) {
+                      setState(() {
+                        checkBoxValue = val;
+                      });
+                    },
+                    label: 'Test',
+                  ),
+                ],
               ),
               const SizedBox(height: 20),
               AwesomeSelectableCircleAvatar(
                 avatarUrls: avatarUrls,
                 onAvatarSelected: (val) {
-                  print(val);
+                  return;
                 },
               ),
             ],

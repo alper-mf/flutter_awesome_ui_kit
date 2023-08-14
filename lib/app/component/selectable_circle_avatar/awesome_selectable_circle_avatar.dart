@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 class AwesomeSelectableCircleAvatar extends StatefulWidget {
   final List<String> avatarUrls;
   final ValueChanged<int> onAvatarSelected;
+  final double? radius;
 
   const AwesomeSelectableCircleAvatar({
     super.key,
     required this.avatarUrls,
     required this.onAvatarSelected,
+    this.radius,
   });
 
   @override
@@ -40,10 +42,16 @@ class _SelectableCircleAvatarState extends State<AwesomeSelectableCircleAvatar> 
                   margin: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: _selectedAvatarIndex == index ? Colors.blue : Colors.grey,
+                    color: _selectedAvatarIndex == index ? Theme.of(context).primaryColor : Colors.grey,
+                    border: Border.all(
+                      color: _selectedAvatarIndex == index
+                          ? Theme.of(context).primaryColor
+                          : Theme.of(context).scaffoldBackgroundColor,
+                      width: 2,
+                    ),
                   ),
                   child: CircleAvatar(
-                    radius: 30,
+                    radius: widget.radius ?? 30,
                     backgroundImage: NetworkImage(widget.avatarUrls[index]),
                   ),
                 ),

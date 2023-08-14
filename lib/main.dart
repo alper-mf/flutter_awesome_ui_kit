@@ -178,7 +178,9 @@ class _MainAppState extends State<MainApp> {
               const SizedBox(height: 20),
               AwesomeSelectableCircleAvatar(
                 avatarUrls: avatarUrls,
-                onAvatarSelected: (val) {},
+                onAvatarSelected: (val) {
+                  print(val);
+                },
               ),
             ],
           ),

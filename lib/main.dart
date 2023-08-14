@@ -1,5 +1,6 @@
 import 'package:drh_app_components/app/component/button/button_space.dart';
 import 'package:drh_app_components/app/component/checkbox/awesome_checkbox.dart';
+import 'package:drh_app_components/app/component/dropdown/awesome_drop_down.dart';
 import 'package:drh_app_components/app/component/radio_button/awesome_radio_button.dart';
 import 'package:drh_app_components/app/component/selectable_chip_button/selectable_chip_button.dart';
 import 'package:drh_app_components/app/component/selectable_circle_avatar/awesome_selectable_circle_avatar.dart';
@@ -29,6 +30,9 @@ class _MainAppState extends State<MainApp> {
     'https://i.pravatar.cc/150?img=3',
     'https://i.pravatar.cc/150?img=4',
   ];
+
+  final items = <String>['Item 1', 'Item 2', 'Item 3'];
+  String? selectedValue;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -198,10 +202,9 @@ class _MainAppState extends State<MainApp> {
               const SizedBox(height: 20),
               AwesomeSelectableCircleAvatar(
                 avatarUrls: avatarUrls,
-                onAvatarSelected: (val) {
-                  return;
-                },
+                onAvatarsSelected: (selectedAvatarIndices) {},
               ),
+              const SizedBox(height: 20),
             ],
           ),
         ),

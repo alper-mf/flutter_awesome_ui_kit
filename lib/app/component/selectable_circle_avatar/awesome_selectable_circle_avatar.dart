@@ -1,24 +1,62 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 
 class AwesomeSelectableCircleAvatar extends StatefulWidget {
   final List<String> avatarUrls;
-  final ValueChanged<int> onAvatarSelected;
+  final ValueChanged<List<int>> onAvatarsSelected;
   final double? radius;
 
   const AwesomeSelectableCircleAvatar({
-    super.key,
+    Key? key,
     required this.avatarUrls,
-    required this.onAvatarSelected,
+    required this.onAvatarsSelected,
     this.radius,
-  });
+  }) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
   _SelectableCircleAvatarState createState() => _SelectableCircleAvatarState();
 }
 
 class _SelectableCircleAvatarState extends State<AwesomeSelectableCircleAvatar> {
-  int _selectedAvatarIndex = 0;
+  final List<int> _selectedAvatarIndices = [];
+
+  void _handleAvatarTap(int index) {
+    setState(() {
+      if (_selectedAvatarIndices.contains(index)) {
+        _selectedAvatarIndices.remove(index);
+      } else {
+        _selectedAvatarIndices.add(index);
+      }
+      widget.onAvatarsSelected(_selectedAvatarIndices);
+    });
+  }
+
+  Widget _buildAvatar(int index) {
+    final isSelected = _selectedAvatarIndices.contains(index);
+    final theme = Theme.of(context);
+    final avatarColor = isSelected ? theme.primaryColor.withOpacity(0.2) : theme.scaffoldBackgroundColor;
+
+    return GestureDetector(
+      onTap: () => _handleAvatarTap(index),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        margin: const EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: avatarColor,
+          border: Border.all(
+            color: isSelected ? theme.primaryColor : theme.scaffoldBackgroundColor,
+            width: 2,
+          ),
+        ),
+        child: CircleAvatar(
+          radius: widget.radius ?? 30,
+          backgroundImage: NetworkImage(widget.avatarUrls[index]),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,33 +68,7 @@ class _SelectableCircleAvatarState extends State<AwesomeSelectableCircleAvatar> 
           mainAxisAlignment: MainAxisAlignment.center,
           children: List.generate(
             widget.avatarUrls.length,
-            (index) {
-              return GestureDetector(
-                onTap: () {
-                  setState(() {
-                    _selectedAvatarIndex = index;
-                    widget.onAvatarSelected(index);
-                  });
-                },
-                child: Container(
-                  margin: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: _selectedAvatarIndex == index ? Theme.of(context).primaryColor : Colors.grey,
-                    border: Border.all(
-                      color: _selectedAvatarIndex == index
-                          ? Theme.of(context).primaryColor
-                          : Theme.of(context).scaffoldBackgroundColor,
-                      width: 2,
-                    ),
-                  ),
-                  child: CircleAvatar(
-                    radius: widget.radius ?? 30,
-                    backgroundImage: NetworkImage(widget.avatarUrls[index]),
-                  ),
-                ),
-              );
-            },
+            _buildAvatar,
           ),
         ),
       ],
